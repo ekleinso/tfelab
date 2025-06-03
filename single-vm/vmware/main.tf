@@ -50,4 +50,8 @@ resource "vsphere_virtual_machine" "vm" {
     "guestinfo.ignition.config.data.encoding"  = "base64"
     "guestinfo.afterburn.initrd.network-kargs" = "ip=${var.ip_address}::${var.vm_gateway}:${cidrnetmask(var.machine_cidr)}:${var.hostname}:ens192:none ${join(" ", formatlist("nameserver=%v", var.dns_addresses))}"
   }
+
+  lifecycle {
+    ignore_changes = [extra_config]
+  }
 }

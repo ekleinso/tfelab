@@ -1,5 +1,6 @@
 # Local .terraform directories
 .terraform/
+oauth-connection/
 
 # .tfstate files
 *.tfstate

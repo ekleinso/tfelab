@@ -1,22 +1,19 @@
 
 # -[Provider]--------------------------------------------------------------
 provider "vsphere" {
-  user                 = var.vsphere_user
-  password             = var.vsphere_password
-  vsphere_server       = var.vsphere_server
   allow_unverified_ssl = true
 }
 
 # -[Resources]-------------------------------------------------------------
 
 locals {
-  vsphere_resource_pool = format("/%s/host/%s/Resources/Cluster Resource Pool/Gym Member Resource Pool/%s", var.vsphere_datacenter, var.vsphere_cluster, var.ocpgym_id)
-  vsphere_folder        = format("/%s/%s", var.vsphere_cluster, var.ocpgym_id)
-  vm_network            = format("%s-segment", var.ocpgym_id)
-  vsphere_datastore     = format("%s-storage", var.ocpgym_id)
+  vsphere_resource_pool = format("/%s/host/%s/Resources/Cluster Resource Pool/Gym Member Resource Pool/%s", var.vsphere_datacenter, var.vsphere_cluster, var.ocpgym_name)
+  vsphere_folder        = format("/%s/%s", var.vsphere_cluster, var.ocpgym_name)
+  vm_network            = format("%s-segment", var.ocpgym_name)
+  vsphere_datastore     = format("%s-storage", var.ocpgym_name)
 
   machine_cidr = format("%s.0/24", join(".", slice(split(".", var.ip_address), 0, 3)))
-  hostname     = format("%s-%s", var.ocpgym_id, var.hostname)
+  hostname     = format("%s-%s-%s", var.ocpgym_name, var.hostname, var.env)
 }
 
 data "vsphere_datacenter" "dc" {

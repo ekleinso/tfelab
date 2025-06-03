@@ -2,21 +2,6 @@
 // vSphere variables
 //////
 
-variable "vsphere_server" {
-  type        = string
-  description = "This is the vSphere server for the environment."
-}
-
-variable "vsphere_user" {
-  type        = string
-  description = "vSphere server user for the environment."
-}
-
-variable "vsphere_password" {
-  type        = string
-  description = "vSphere server password"
-}
-
 variable "vsphere_cluster" {
   type        = string
   description = "This is the name of the vSphere cluster."
@@ -32,7 +17,7 @@ variable "vm_template" {
   description = "This is the name of the VM template to clone."
 }
 
-variable "ocpgym_id" {
+variable "ocpgym_name" {
   type        = string
   description = "The OpenShift gym identifier (i.e. gym-310002f78j-008m2axz)."
 }
@@ -62,4 +47,9 @@ variable "vm_dns_addresses" {
   type        = string
   description = "Comma separated list of DNS Servers"
   default     = "192.168.252.1"
+}
+
+variable "env" {
+  type        = string
+  description = "environment string"
 }

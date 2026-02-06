@@ -8,7 +8,7 @@ provider "vsphere" {
 
 locals {
   vsphere_resource_pool = format("/%s/host/%s/Resources/Cluster Resource Pool/Gym Member Resource Pool/%s", var.vsphere_datacenter, var.vsphere_cluster, var.ocpgym_name)
-  vsphere_folder        = format("/%s/%s", var.vsphere_cluster, var.ocpgym_name)
+  vsphere_folder        = format("/%s/reservations/%s", var.vsphere_cluster, var.ocpgym_name)
   vm_network            = format("%s-segment", var.ocpgym_name)
   vsphere_datastore     = format("%s-storage", var.ocpgym_name)
 
